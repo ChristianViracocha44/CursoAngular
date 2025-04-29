@@ -1,4 +1,4 @@
-<h1>Pagina de Dragon Ball</h1>
+<h1>Pagina de Dragon Ball Super</h1>
 <hr />
 
 <section class="row">
@@ -35,12 +35,10 @@
       @if(item.power>500) {
       <li>
         <span> {{ idx + 1 }} - {{ item.name }} </span>
-        <!-- <strong class="text-danger"> ({{ item.power }}) </strong> -->
         <strong
           [class.text-danger]="item.power > 9000"
           [class.text-success]="item.power < 9000"
         >
-          <!-- [ngClass]="powerClasses()" -->
           ({{ item.power }})
         </strong>
       </li>

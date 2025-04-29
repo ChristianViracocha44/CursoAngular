@@ -1,4 +1,3 @@
-//import { NgClass } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 
 interface Character {
@@ -8,20 +7,18 @@ interface Character {
 }
 
 @Component({
-  selector: 'app-dragonball-page',
-  imports: [
-    //NgClass
-    ],
-  templateUrl: './dragonball-page.component.html',
-  styleUrl: './dragonball-page.component.css'
+  selector: 'app-dragonball-super-page',
+  templateUrl: './dragonball-super-page.component.html',
+  styleUrl: './dragonball-super-page.component.css'
 })
-export class DragonballPageComponent {
+export class DragonballSuperPageComponent {
 
   name= signal<string>('');
   power= signal<number>(0);
 
   charecters = signal<Character[]>( [
     { id: 1, name: 'Goku', power: 9001 },
+    { id: 2, name: 'Vegeta', power: 8000 },
   ]);
 
   powerClasses = computed(() => {
