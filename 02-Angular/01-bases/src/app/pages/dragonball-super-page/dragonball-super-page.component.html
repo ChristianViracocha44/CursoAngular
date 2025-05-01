@@ -3,48 +3,13 @@
 
 <section class="row">
   <div class="col-12 col-sm-6">
-    <h3>Agregar: {{ name() }}</h3>
-
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Nombre"
-      #txtName
-      [value]="name()"
-      (change)="name.set(txtName.value)"
-    />
-
-    <input
-      type="number"
-      class="form-control mt-2"
-      placeholder="Poder"
-      [value]="power()"
-      (change)="power.set(+txtPower.value)"
-      #txtPower
-    />
-
-    <button class="btn btn-primary mt-2" (click)="addCharacter()">
-      Agregar
-    </button>
+      <dragonBall-character-add />
   </div>
 
   <div class="col-12 col-sm-6">
-    <h3>Listado</h3>
-    <ul>
-      @for (item of charecters(); track item.id; let idx = $index) {
-      @if(item.power>500) {
-      <li>
-        <span> {{ idx + 1 }} - {{ item.name }} </span>
-        <strong
-          [class.text-danger]="item.power > 9000"
-          [class.text-success]="item.power < 9000"
-        >
-          ({{ item.power }})
-        </strong>
-      </li>
-      } @else {
-      <li><strong>No cumple con los requisitos</strong></li>
-      } }
-    </ul>
+    <dragonball-character-list
+    listName="Lista de Personajes"
+    [charecters]="charecters()" />
+
   </div>
 </section>
