@@ -23,21 +23,10 @@ export class DragonballSuperPageComponent {
     return { 'text-danger': true };
   });
 
-  addCharacter() {
+  addCharacter( newCharacter: Character) {
     // Validar que el nombre y el poder no sean vacíos o nulos
-    if (!this.name() || !this.power() || this.power() <= 0) {
-      return;
-    }
-
-    const newCharacter: Character = {
-      id: this.charecters().length + 1,
-      name: this.name(),
-      power: this.power(),
-    };
-
     this.charecters.update((list) => [...list, newCharacter]);
 
-    this.resetFields();
   }
 
   resetFields() {
