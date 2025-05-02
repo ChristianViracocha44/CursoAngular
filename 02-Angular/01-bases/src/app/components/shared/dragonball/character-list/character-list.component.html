@@ -1,0 +1,18 @@
+
+<h3>{{ listName() }}</h3>
+<ul>
+  @for (item of charecters(); track item.id; let idx = $index) {
+  @if(item.power>500) {
+  <li>
+    <span> {{ idx + 1 }} - {{ item.name }} </span>
+    <strong
+      [class.text-danger]="item.power > 9000"
+      [class.text-success]="item.power < 9000"
+    >
+      ({{ item.power }})
+    </strong>
+  </li>
+  } @else {
+  <li><strong>No cumple con los requisitos</strong></li>
+  } }
+</ul>
