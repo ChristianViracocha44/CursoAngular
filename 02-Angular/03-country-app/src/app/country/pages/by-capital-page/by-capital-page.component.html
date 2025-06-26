@@ -1,11 +1,29 @@
-<country-search-input placeholder="Buscar por capital de mi pais"
-  (value)="onSearch($event)"
-/>
+<!--Proceso Normal -->
+<!--
 
-@if(isError()){
-  <h3>{{isError()}}</h3>
-} @else {
-  <country-list [countries]="countries()"/>
-}
+  <country-search-input placeholder="Buscar por capital de mi pais"
+    (value)="onSearch($event)"
+  />
 
+  @if(isError()){
+    <h3>{{isError()}}</h3>
+  } @else {
+    <country-list [countries]="countries()"/>
+  }
+
+-->
+
+
+<!--Proceso Nuevo -->
+
+
+  <country-search-input placeholder="Buscar por capital de mi pais"
+    (value)="query.set($event)"
+  />
+
+  @if(countryResource.error()) {
+    <h3>{{countryResource.error()}}</h3>
+  } @if(countryResource.hasValue()) {
+    <country-list [countries]="countryResource.value()!"/>
+  }
 
