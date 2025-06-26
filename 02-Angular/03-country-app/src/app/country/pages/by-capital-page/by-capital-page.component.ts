@@ -1,21 +1,21 @@
 import { Component, inject, resource, signal } from '@angular/core';
-import { SearchInputComponent } from "../../components/search-input/search-input.component";
-import { CountryListComponent } from "../../components/country-list/country-list.component";
+import { SearchInputComponent } from '../../components/search-input/search-input.component';
+import { CountryListComponent } from '../../components/country-list/country-list.component';
 import { CountryService } from '../../services/country.service';
 import { RESTCountry } from '../../interfaces/rest-countries.interface';
 import { Country } from '../../interfaces/country.interface';
-import { first, firstValueFrom } from 'rxjs';
+import { first, firstValueFrom, of } from 'rxjs';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-by-capital-page',
   imports: [SearchInputComponent, CountryListComponent],
   templateUrl: './by-capital-page.component.html',
-  styleUrl: './by-capital-page.component.css'
+  styleUrl: './by-capital-page.component.css',
 })
 export class ByCapitalPageComponent {
-  countryService =inject(CountryService);
+  countryService = inject(CountryService);
   searchPlaceholder = 'Buscar por capital';
-
 
   //========================================================
   // Proceso estandar
@@ -50,8 +50,8 @@ export class ByCapitalPageComponent {
   //========================================================
 
   //========================================================
-  // Proceso nuevo
-
+  // Proceso nuevo que trabaja con promesas
+  /*
   query=signal('');
 
 
@@ -65,8 +65,24 @@ export class ByCapitalPageComponent {
       );
     },
   });
-
+*/
   //========================================================
   //========================================================
 
+  //========================================================
+  // Proceso nuevo que trabaja con observables
+
+  query = signal('');
+
+  countryResource = rxResource({
+    request: () => ({ query: this.query() }),
+    loader: ({ request }) => {
+      if (!request.query) return of([]);
+
+      return this.countryService.searchByCapital(request.query);
+    },
+  });
+
+  //========================================================
+  //========================================================
 }
